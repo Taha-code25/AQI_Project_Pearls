@@ -1,0 +1,10 @@
+hopsworks
+streamlit
+plotly
+pandas
+scikit-learn
+joblib
+shap
+matplotlib
+requests
+numpy
