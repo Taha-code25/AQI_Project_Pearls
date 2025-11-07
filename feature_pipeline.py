@@ -98,7 +98,7 @@ def main():
         print("No data to insert.")
         return
 
-    project = hopsworks.login(api_key_value=os.getenv("HOPSWORKS_API_KEY"))
+    project = hopsworks.login(project="aqi_taha",api_key_value=os.getenv("HOPSWORKS_API_KEY"))
     fs = project.get_feature_store()
     fg = fs.get_or_create_feature_group(
         name="aqi_features",
