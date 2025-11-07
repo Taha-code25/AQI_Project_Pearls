@@ -1,19 +1,20 @@
-name: Hourly AQI Ingestion
+name: Hourly AQI
 on:
   schedule:
-    - cron: '0 * * * *'   # Every hour (PKT)
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
-  ingest:
+  run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - run: pip install "hopsworks==4.2.*" requests pandas
+      - run: |
+          pip install --upgrade pip
+          pip install --no-cache-dir -r requirements.txt
       - run: python feature_pipeline.py
         env:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
-          YOUR_WAQI_TOKEN: ${{ secrets.WAQI_TOKEN }}
