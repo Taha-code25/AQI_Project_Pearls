@@ -1,4 +1,4 @@
-hopsworks[online]==4.4.2
+hopsworks==4.4.2
 streamlit==1.51.0
 plotly==6.3.1
 pandas==2.2.3
