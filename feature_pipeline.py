@@ -106,8 +106,8 @@ def main():
         primary_key=["city", "timestamp_unix"],
         event_time="timestamp"
     )
-    fg.insert(df, write_options={"wait_for_job": True})
-    print(f"Inserted {len(df)} rows")
+    fg.insert(df)
+    print(f"GREEN: INGESTED {len(df)} rows | AQI = {df['aqi'].iloc[-1]}")
 
 if __name__ == "__main__":
     main()
