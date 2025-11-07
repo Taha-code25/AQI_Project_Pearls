@@ -6,7 +6,7 @@ import hopsworks
 import os
 
 # PDSYoYJGLZLbLEkZ.kF4XKAmi3fynDB3cCQBqHggdxJJv5SbwjmhGPqCdODIo2pOMmdZvru26hQEeyBdx
-
+# 7kbF3FcfqmVDDC2z.MMVAG3T41VFier9pfhhWIVrWJa2cRye6SV6Uet3RRihWqHL3gFmgeGEKhRkv5cmT
 CITY = "Karachi"
 LAT, LON = 24.8607,  67.0011
 
@@ -98,7 +98,7 @@ def main():
         print("No data to insert.")
         return
 
-    project = hopsworks.login(project="aqi_taha",api_key_value=os.getenv("HOPSWORKS_API_KEY"))
+    project = hopsworks.login(api_key_value=os.getenv("HOPSWORKS_API_KEY"))
     fs = project.get_feature_store()
     fg = fs.get_or_create_feature_group(
         name="aqi_features",
