@@ -1,38 +1,9 @@
-# name: Hourly AQI
-# on:
-#   schedule:
-#     - cron: '0 * * * *'
-#   workflow_dispatch:
-
-# jobs:
-#   run:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-      
-#       - name: Setup Python
-#         uses: actions/setup-python@v5
-#         with:
-#           python-version: '3.10'
-#           cache: 'pip'
-
-#       - name: FORCE 4.4.2
-#         run: |
-#           rm -rf /home/runner/.cache/pip
-#           python -m pip install --upgrade pip
-#           pip install "hopsworks[python]" pandas requests
-
-#       - name: Run Feature Pipeline
-#         env:
-#           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
-#         run: python feature_pipeline.py
-
 name: Hourly Feature Pipeline
 
 on:
   schedule:
-    - cron: '0 * * * *'  
-  workflow_dispatch:   
+    - cron: '0 * * * *'  # Runs every hour
+  workflow_dispatch:      # Allows manual trigger
 
 jobs:
   features:
@@ -45,6 +16,17 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
-      - name: In
+      - name: Install dependencies
+        run: |
+          rm -rf ~/.cache/pip
+          python -m pip install --upgrade pip
+          pip install "hopsworks==4.2.*" pandas requests pyarrow SQLAlchemy==2.0.29
+        env:
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+
+      - name: Run feature pipeline
+        run: python feature_pipeline.py
+        env:
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
