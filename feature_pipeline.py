@@ -104,8 +104,7 @@ def main():
         name="aqi_features",
         version=1,
         primary_key=["city", "timestamp_unix"],
-        event_time="timestamp",
-        online_enabled=True
+        event_time="timestamp"
     )
     fg.insert(df, write_options={"wait_for_job": True})
     print(f"Inserted {len(df)} rows")
