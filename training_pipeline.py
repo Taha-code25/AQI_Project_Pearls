@@ -10,6 +10,7 @@ from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.linear_model import Ridge
 from sklearn.metrics import mean_absolute_error, root_mean_squared_error, r2_score
 
+
 project = hopsworks.login(api_key_value=os.getenv("HOPSWORKS_API_KEY"))
 fs = project.get_feature_store()
 fg = fs.get_feature_group(name="aqi_features", version=1)
