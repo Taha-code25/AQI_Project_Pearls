@@ -20,7 +20,7 @@ jobs:
         run: |
           rm -rf /home/runner/.cache/pip
           python -m pip install --upgrade pip
-          pip install --no-cache-dir hopsworks==4.4.2 pandas requests
+          pip install "hopsworks[python]" pandas requests
 
       - name: Run Feature Pipeline
         env:
