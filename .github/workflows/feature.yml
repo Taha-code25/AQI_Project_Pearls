@@ -1,32 +1,21 @@
-name: Hourly Feature Pipeline
-
+name: Hourly AQI
 on:
   schedule:
-    - cron: '0 * * * *'  # Runs every hour
-  workflow_dispatch:      # Allows manual trigger
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 jobs:
-  features:
+  run:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Install dependencies
-        run: |
+      - run: |
           rm -rf ~/.cache/pip
-          python -m pip install --upgrade pip
-          pip install "hopsworks==4.2.*" pandas requests pyarrow SQLAlchemy==2.0.29
-        env:
-          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
-
-      - name: Run feature pipeline
-        run: python feature_pipeline.py
+          pip install --upgrade pip
+          pip install --no-cache-dir -r requirements.txt
+      - run: python feature_pipeline.py
         env:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
