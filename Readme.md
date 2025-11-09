@@ -105,7 +105,7 @@ This project is released under the **MIT License**.
 
 **Taha Faisal**  
 🎓 NED University of Engineering & Technology  
-📧 [LinkedIn](https://www.linkedin.com) • [GitHub](https://github.com)
+📧[GitHub](https://github.com)
 
 ---
 
